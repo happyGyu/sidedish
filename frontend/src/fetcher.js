@@ -22,12 +22,14 @@ export const useSpecialCategories = (extended) => {
   return specialCategories;
 };
 
+export const myFetch = async (query) => await (await fetch(query)).json();
 export const useFetch = (selected, special) => {
   const [products, setProducts] = useState();
   useEffect(() => {
     let query = special
       ? "/mocks/specialCategoryProducts.json"
       : "/mocks/categoryProducts.json";
+    console.log(query);
     (async () => {
       const json = await (await fetch(query)).json();
 
@@ -35,4 +37,14 @@ export const useFetch = (selected, special) => {
     })();
   }, [selected]);
   return products;
+};
+
+export const useFetch1 = (query) => {
+  useEffect(() => {
+    try {
+      myFetch(query)();
+    } catch (e) {
+      throw e;
+    }
+  });
 };

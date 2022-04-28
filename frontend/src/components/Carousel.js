@@ -46,7 +46,7 @@ const CarouselButton = ({ size, dir, onBtnClick, isEndPage }) => (
 
 export const Carousel = ({ id, title, size }) => {
   const [curIndex, setCurIndex] = useState(0);
-  const { requestDetail, products } = useFetch(Queries.products, id);
+  const { products } = useFetch(Queries.products, id);
   const lastIndex = products?.length - cardNumPerPage[size];
   const clickNext = () => {
     if (curIndex >= lastIndex) return;
